@@ -17,8 +17,7 @@ exports.createQuestion = async (req, res) => {
 
 exports.fetchAllQuestions = async (req, res) => {
     try {
-        const possibleParameters = req.body;
-        const docs = await Question.find(possibleParameters);
+        const docs = await Question.find();
         return res.status(200).json(docs);
     }
     catch (err) {

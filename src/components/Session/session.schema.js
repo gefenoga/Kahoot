@@ -5,7 +5,7 @@ const sessionSchema = new mongoose.Schema({
     playerScores: [
         {
             userID: { type: mongoose.Types.ObjectId, required: true, ref: 'User' },
-            grade: { type: Number, required: true }
+            score: { type: Number, required: true }
         }
     ]
 });

@@ -10,15 +10,15 @@ exports.signup = async (req, res) => {
 		const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
 		const doc = new User({
-			username: username,
+			username: req.body.username,
 			password: hashedPassword,
 		});
 
 		await doc.save();
 		console.log("User created successfully.");
-		const token = authService.generateJWT(doc.id, password);
+		const token = authService.generateJWT(doc.id, req.body.password);
 
-		return res.status(200).json(token);
+		return res.status(200).json({ access_token: token });
 	} catch (err) {
 		return res.status(400).json({ message: `Error in signup: ${err.message}` });
 	}
